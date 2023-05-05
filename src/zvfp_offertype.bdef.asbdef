@@ -1,0 +1,21 @@
+projection;
+strict ( 2 );
+
+define behavior for zvfp_offertype //alias <alias_name>
+{
+  use create;
+  use update;
+  use delete;
+
+  use action excelUpload;
+
+  use association _subtype { create; }
+}
+
+define behavior for zvfp_offersubtype //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Offertype;
+}

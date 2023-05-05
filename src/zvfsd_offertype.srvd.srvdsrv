@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition for Offer type'
+define service ZVFSD_OFFERTYPE {
+  expose zvfp_offertype;
+  expose zvfp_offersubtype;
+}

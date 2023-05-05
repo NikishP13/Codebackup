@@ -1,0 +1,36 @@
+@Metadata.layer:#CORE
+@UI: {
+  headerInfo: { typeName: 'OfferTypes',
+                typeNamePlural: 'Offer Types',
+                title: { type:#STANDARD, label: 'Offer Types', value: 'OfferType' } },
+                presentationVariant: [ { sortOrder: [ { by: 'OfferType', direction: #ASC } ] } ]
+}
+annotate entity zvfp_offertype
+    with 
+{
+
+  @UI.facet: [
+  {
+      label: 'Offer Type',
+      id: 'OfferDetails',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      position: 10
+  },
+  {
+      label: 'Sub Types',
+      id: 'OfferDetails22',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      targetElement: '_subtype',
+      position: 20
+  }  
+]
+
+@UI: { lineItem: [ { position: 10 } ],  identification: [ { position: 10, label: 'Offer Type' } ], 
+                  selectionField: [{ position: 10 }] }
+    OfferType;
+@UI: { lineItem: [ { position: 20 } ],  identification: [ { position: 20, label: 'Offer Type Desc' } ] }
+    OfferDesc;
+    
+}

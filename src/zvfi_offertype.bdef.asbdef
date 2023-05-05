@@ -1,0 +1,55 @@
+managed implementation in class zbp_vfi_offertype unique;
+strict ( 2 );
+
+define behavior for zvfI_offertype //alias <alias_name>
+persistent table zvf_ofrtyp
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly, numbering : managed ) Offertypeuuid;
+  association _subtype { create; }
+
+  validation duplicateoffertype on save { create; update; }
+
+  //instance action to create offer type and offer subtype via excel upload
+  action excelUpload parameter zvfD_OFFERsubTYPE result [1] $self;
+
+
+  mapping for zvf_ofrtyp
+  {
+    Offertypeuuid = offertypeuuid;
+    OfferType = offer_type;
+    OfferDesc = offer_desc;
+  }
+}
+
+define behavior for zvfI_offersubtype //alias <alias_name>
+persistent table zvf_ofrsubtyp
+lock dependent by _Offertype
+authorization dependent by _Offertype
+//etag master <field_name>
+{
+  update;
+  delete;
+
+  field ( readonly, numbering : managed ) Offersubtypeuuid;
+  field ( readonly ) Offertyeuuid;
+  association _Offertype;
+
+  validation duplicateoffersubtype on save { create; update; }
+
+  mapping for zvf_ofrsubtyp
+  {
+    Offersubtypeuuid = offersubtypeuuid;
+    OffrType = offr_type;
+    OffrSubtype = offr_subtype;
+    OffersubDesc = offersub_desc;
+
+  }
+
+
+}

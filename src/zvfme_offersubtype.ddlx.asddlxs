@@ -1,0 +1,35 @@
+@Metadata.layer: #CORE
+@UI: { 
+
+headerInfo:{ typeName: 'OfferSubType',
+             typeNamePlural:'Offer Sub Types',
+             title: { type:#STANDARD, label: 'Assign Offer SubTypes', value: 'OffrSubtype' } },
+             presentationVariant: [ { sortOrder: [ { by: 'OffrSubtype', direction: #ASC } ] } ]
+}
+annotate entity zvfp_offersubtype
+    with 
+{
+
+@UI.facet: [{
+
+      label: 'Offer Sub Types',
+      id: 'OfferSubType',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      position: 10
+ }]
+
+@UI.hidden: true
+OffrType;
+  @UI: {  lineItem: [ { position: 20, label: 'Offer Sub Type' } ],
+    identification: [ { position: 20, label: 'Offer Sub Type' } ],
+    fieldGroup: [ { qualifier: 'OfferSubType', position: 20 } ] }
+
+OffrSubtype;
+  @UI: {  lineItem: [ { position: 30, label: 'Subtype Description' } ],
+    identification: [ { position: 30, label: 'Subtype Description' } ],
+    fieldGroup: [ { qualifier: 'OfferSubType', position: 30 } ] }
+
+OffersubDesc;
+    
+}
